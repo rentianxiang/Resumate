@@ -20,7 +20,7 @@ import { NeutralColors } from '@fluentui/theme';
 import { SharedColors } from '@fluentui/theme';
 import './App.css'
 
-import { Paper } from './components/Paper'
+import { ResumeSidebarLeft } from './components/Resume/templates/ResumeSidebarLeft'
 
 interface InterfaceFlexContainer {
   children?: any
@@ -69,16 +69,6 @@ const Sitemap = () => {
   )
 }
 
-// const Paper: React.FunctionComponent = ({ children }) => {
-//   const height = 2000
-//   const width = height * 210 / 297
-//   return (
-//     <div style={{ height, width, backgroundColor: SharedColors.red20 }}>
-//       {children}
-//     </div>
-//   )
-// }
-
 const Layout = ({ children }: InterfaceFlexContainer) => {
   const height = window.innerHeight - 3 * 50
   return (
@@ -100,7 +90,7 @@ export const App: React.FunctionComponent = () => {
   return (
     <div>
       <Layout>
-        <Paper />
+        <ResumeSidebarLeft />
       </Layout>
     </div>
   )
