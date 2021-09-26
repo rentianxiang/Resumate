@@ -1,44 +1,107 @@
-import React from 'react';
-import { Stack, Text, Link, FontWeights, IStackTokens, IStackStyles, ITextStyles } from '@fluentui/react';
-import logo from './logo.svg';
-import './App.css';
+// docx.js.org
+// Templates
 
-const boldStyle: Partial<ITextStyles> = { root: { fontWeight: FontWeights.semibold } };
-const stackTokens: IStackTokens = { childrenGap: 15 };
-const stackStyles: Partial<IStackStyles> = {
-  root: {
-    width: '960px',
-    margin: '0 auto',
-    textAlign: 'center',
-    color: '#605e5c',
-  },
-};
+// Command Bar
+
+// Paper
+// A4: 210 * 297 mm
+
+// Portrait
+// NameAndIntro
+// Contact
+// Sidebar
+// ContentBlock: 荣誉奖项:xxx
+
+// Timeline
+// List (ForceLine,Bullet)
+
+import React from 'react';
+import { NeutralColors } from '@fluentui/theme';
+import { SharedColors } from '@fluentui/theme';
+import './App.css'
+
+import { Paper } from './components/Paper'
+
+interface InterfaceFlexContainer {
+  children?: any
+  height?: number,
+  backgroundColor?: string
+  style?: object
+}
+
+const FlexContainer = ({ children, height = 50, backgroundColor = '#ffffff', style }: InterfaceFlexContainer) => {
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', height: `${height}px`, backgroundColor, ...style }}>
+      {children}
+    </div>
+  )
+}
+
+const Header = () => {
+  return (
+    <FlexContainer backgroundColor={SharedColors.greenCyan10}>
+      Header
+    </FlexContainer>
+  )
+}
+
+const Footer = () => {
+  return (
+    <FlexContainer backgroundColor={SharedColors.gray40}>
+      Footer
+    </FlexContainer>
+  )
+}
+
+const Ribbon = () => {
+  return (
+    <FlexContainer backgroundColor={SharedColors.green10}>
+      Ribbon
+    </FlexContainer>
+  )
+}
+
+const Sitemap = () => {
+  return (
+    <FlexContainer backgroundColor={SharedColors.orange10} style={{ height: '100%', width: '200px' }}>
+      Sitemap
+    </FlexContainer>
+  )
+}
+
+// const Paper: React.FunctionComponent = ({ children }) => {
+//   const height = 2000
+//   const width = height * 210 / 297
+//   return (
+//     <div style={{ height, width, backgroundColor: SharedColors.red20 }}>
+//       {children}
+//     </div>
+//   )
+// }
+
+const Layout = ({ children }: InterfaceFlexContainer) => {
+  const height = window.innerHeight - 3 * 50
+  return (
+    <>
+      <Header />
+      <Ribbon />
+      <FlexContainer backgroundColor={NeutralColors.gray50} height={height}>
+        <Sitemap />
+        <div className='hideScrollBar' style={{ height, overflow: 'scroll' }}>
+          {children}
+        </div>
+      </FlexContainer>
+      <Footer />
+    </>
+  )
+}
 
 export const App: React.FunctionComponent = () => {
   return (
-    <Stack horizontalAlign="center" verticalAlign="center" verticalFill styles={stackStyles} tokens={stackTokens}>
-      <img className="App-logo" src={logo} alt="logo" />
-      <Text variant="xxLarge" styles={boldStyle}>
-        Welcome to your Fluent UI app
-      </Text>
-      <Text variant="large">For a guide on how to customize this project, check out the Fluent UI documentation.</Text>
-      <Text variant="large" styles={boldStyle}>
-        Essential links
-      </Text>
-      <Stack horizontal tokens={stackTokens} horizontalAlign="center">
-        <Link href="https://developer.microsoft.com/en-us/fluentui#/get-started/web">Docs</Link>
-        <Link href="https://stackoverflow.com/questions/tagged/office-ui-fabric">Stack Overflow</Link>
-        <Link href="https://github.com/microsoft/fluentui/">Github</Link>
-        <Link href="https://twitter.com/fluentui">Twitter</Link>
-      </Stack>
-      <Text variant="large" styles={boldStyle}>
-        Design system
-      </Text>
-      <Stack horizontal tokens={stackTokens} horizontalAlign="center">
-        <Link href="https://developer.microsoft.com/en-us/fluentui#/styles/web/icons">Icons</Link>
-        <Link href="https://developer.microsoft.com/en-us/fluentui#/styles/web">Styles</Link>
-        <Link href="https://aka.ms/themedesigner">Theme designer</Link>
-      </Stack>
-    </Stack>
-  );
-};
+    <div>
+      <Layout>
+        <Paper />
+      </Layout>
+    </div>
+  )
+}
