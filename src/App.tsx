@@ -20,7 +20,7 @@ import { NeutralColors } from "@fluentui/theme";
 import { SharedColors } from "@fluentui/theme";
 import "./App.css";
 
-import { ResumeSidebarLeft } from "./components/Resume/templates/ResumeSidebarLeft";
+import { ResumeSimple } from "./components/Resume/templates/ResumeSimple";
 
 interface InterfaceFlexContainer {
   children?: any;
@@ -102,7 +102,7 @@ export const App: React.FunctionComponent = () => {
   return (
     <div>
       <Layout>
-        <ResumeSidebarLeft />
+        <ResumeSimple />
       </Layout>
     </div>
   );
