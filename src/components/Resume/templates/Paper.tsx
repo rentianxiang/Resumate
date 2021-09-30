@@ -1,14 +1,6 @@
 import { createContext } from "react";
 
-interface InterfacePaperContext {
-  paperHeight: number;
-  paperWidth: number;
-}
-
-export const PaperContext = createContext<InterfacePaperContext>({
-  paperHeight: window.innerHeight,
-  paperWidth: window.innerWidth,
-});
+export const PaperContext = createContext<any>({});
 
 export const Paper: React.FunctionComponent = ({ children }) => {
   const paperHeight = 2000; // 简历长度
